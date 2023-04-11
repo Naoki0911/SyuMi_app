@@ -1,0 +1,62 @@
+<%= form_with(model: sake) do |form| %>
+  <% if sake.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sake.errors.count, "error") %> prohibited this sake from being saved:</h2>
+
+      <ul>
+        <% sake.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :place %>
+    <%= form.text_field :place %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sweetness %>
+    <%= form.number_field :sweetness %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flavor %>
+    <%= form.number_field :flavor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sour %>
+    <%= form.number_field :sour %>
+  </div>
+
+  <div class="field">
+    <%= form.label :feeling %>
+    <%= form.number_field :feeling %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rich %>
+    <%= form.number_field :rich %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sake.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @sake.content %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @sake.place %>
+</p>
+
+<p>
+  <strong>Sweetness:</strong>
+  <%= @sake.sweetness %>
+</p>
+
+<p>
+  <strong>Flavor:</strong>
+  <%= @sake.flavor %>
+</p>
+
+<p>
+  <strong>Sour:</strong>
+  <%= @sake.sour %>
+</p>
+
+<p>
+  <strong>Feeling:</strong>
+  <%= @sake.feeling %>
+</p>
+
+<p>
+  <strong>Rich:</strong>
+  <%= @sake.rich %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @sake.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_sake_path(@sake) %> |
+<%= link_to 'Back', sakes_path %>

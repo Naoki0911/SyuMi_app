@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sakes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Content</th>
+      <th>Place</th>
+      <th>Sweetness</th>
+      <th>Flavor</th>
+      <th>Sour</th>
+      <th>Feeling</th>
+      <th>Rich</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sakes.each do |sake| %>
+      <tr>
+        <td><%= sake.name %></td>
+        <td><%= sake.content %></td>
+        <td><%= sake.place %></td>
+        <td><%= sake.sweetness %></td>
+        <td><%= sake.flavor %></td>
+        <td><%= sake.sour %></td>
+        <td><%= sake.feeling %></td>
+        <td><%= sake.rich %></td>
+        <td><%= sake.user_id %></td>
+        <td><%= link_to 'Show', sake %></td>
+        <td><%= link_to 'Edit', edit_sake_path(sake) %></td>
+        <td><%= link_to 'Destroy', sake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sake', new_sake_path %>
