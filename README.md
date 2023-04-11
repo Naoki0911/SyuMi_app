@@ -19,11 +19,11 @@
 * $ rails db:create && rails db:migrate
 * $ rails s
 # カタログ設計
-https://docs.google.com/spreadsheets/d/1eus7bcKAVqoutydejNR7-QtldQCxsvqiy3nOgp33huk/edit#gid=589898233
+https://docs.google.com/spreadsheets/d/1eus7bcKAVqoutydejNR7-QtldQCxsvqiy3nOgp33huk/edit?usp=sharing
 # テーブル定義書
-https://docs.google.com/spreadsheets/d/1eus7bcKAVqoutydejNR7-QtldQCxsvqiy3nOgp33huk/edit#gid=0
+https://docs.google.com/spreadsheets/d/1eus7bcKAVqoutydejNR7-QtldQCxsvqiy3nOgp33huk/edit?usp=sharing
 # ワイヤーフレーム
-https://cacoo.com/diagrams/CEY6j2A660QkvB72/7DD16?reload_rt=1681177319970_0&
+https://cacoo.com/diagrams/CEY6j2A660QkvB72/7DD16
 # ER図
 ![ER図](image/B5A15952-8AFF-4CCD-914D-5B0549435E95.png)
 # 画面遷移図
