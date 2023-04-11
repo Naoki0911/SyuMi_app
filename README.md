@@ -25,4 +25,4 @@ https://docs.google.com/spreadsheets/d/1eus7bcKAVqoutydejNR7-QtldQCxsvqiy3nOgp33
 # ワイヤーフレーム
 https://cacoo.com/diagrams/CEY6j2A660QkvB72/7DD16?reload_rt=1681177319970_0&
 # ER図
-./B5A15952-8AFF-4CCD-914D-5B0549435E95.png
+![ER図](./B5A15952-8AFF-4CCD-914D-5B0549435E95.png)
