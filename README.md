@@ -27,4 +27,7 @@ https://cacoo.com/diagrams/CEY6j2A660QkvB72/7DD16
 # ER図
 ![ER図](image/4BE6235A-DEA5-4526-AADD-A94899C6C5F4.png)
 # 画面遷移図
-![画面遷移図](image/667B3368-2097-4B04-8D0A-24C17E2BF836.png)
+![画面遷移図][image/28047A9A-32CD-4AC2-9290-48E366FE528F.png]
+
+
+[def]: image/
