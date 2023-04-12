@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_11_071235) do
+ActiveRecord::Schema.define(version: 2023_04_11_135446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "labelings", force: :cascade do |t|
+    t.bigint "sake_id", null: false
+    t.bigint "label_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["label_id"], name: "index_labelings_on_label_id"
+    t.index ["sake_id"], name: "index_labelings_on_sake_id"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "feature"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "sakes", force: :cascade do |t|
     t.string "name", null: false
@@ -28,4 +43,6 @@ ActiveRecord::Schema.define(version: 2023_04_11_071235) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "labelings", "labels"
+  add_foreign_key "labelings", "sakes"
 end

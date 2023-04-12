@@ -53,6 +53,6 @@ class SakesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sake_params
-      params.require(:sake).permit(:name, :content, :place, :sweetness, :flavor, :sour, :feeling, :rich, :user_id)
+      params.require(:sake).permit(:name, :content, :place, :sweetness, :flavor, :sour, :feeling, :rich, label_ids: [] )
     end
 end
