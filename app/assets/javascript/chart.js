@@ -1,5 +1,5 @@
-$(document).on('turbolinks:load', function(){ //ページを読み込んだらjs発火
-
+$(document).on('turbolinks:load', function(){
+  console.log("hello");
   var sweetness = gon.sweetness; //gonを使った変数をjsで変数に代入
 
   var flavor = gon.flavor;

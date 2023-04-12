@@ -8,7 +8,7 @@ class SakesController < ApplicationController
 
   # GET /sakes/1
   def show
-    gon.sweetness = @sake.sweetness
+    #gon.sweetness = @sake.sweetness
     gon.flavor = @sake.flavor
     gon.sour = @sake.sour
     gon.feeling = @sake.feeling

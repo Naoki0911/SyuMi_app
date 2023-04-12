@@ -40,11 +40,36 @@
   <%= @sake.rich %>
 </p>
 
-<canvas id="SakeChart" width="100px" height="100px">
-</canvas>
+<div>
+  <canvas id="myChart" style="width: 200px; height:150px;" ></canvas>
+</div>
 
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['甘味', '香り', '酸味', '飲みやすさ', 'コク'],
+      datasets: [{
+        label: '評価',
+        data: [<%= @sake.sweetness %>, 4, 3, 5, 2],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
 
 
 
 <%= link_to 'Edit', edit_sake_path(@sake) %> |
 <%= link_to 'Back', sakes_path %>
+
+
