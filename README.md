@@ -25,6 +25,6 @@ https://docs.google.com/spreadsheets/d/1eus7bcKAVqoutydejNR7-QtldQCxsvqiy3nOgp33
 # ワイヤーフレーム
 https://cacoo.com/diagrams/CEY6j2A660QkvB72/7DD16
 # ER図
-![ER図](4BE6235A-DEA5-4526-AADD-A94899C6C5F4.png)
+![ER図](image/4BE6235A-DEA5-4526-AADD-A94899C6C5F4.png)
 # 画面遷移図
-![画面遷移図](667B3368-2097-4B04-8D0A-24C17E2BF836.png)
+![画面遷移図](image/667B3368-2097-4B04-8D0A-24C17E2BF836.png)
