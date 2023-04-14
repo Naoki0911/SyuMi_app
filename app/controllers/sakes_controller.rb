@@ -8,6 +8,7 @@ class SakesController < ApplicationController
 
   # GET /sakes/1
   def show
+    @favorite = current_user.favorites.find_by(sake_id: @sake.id)
   end
 
   # GET /sakes/new
@@ -21,7 +22,7 @@ class SakesController < ApplicationController
 
   # POST /sakes
   def create
-    @sake = Sake.new(sake_params)
+    @sake = current_user.sakes.build(sake_params)
 
     if @sake.save
       redirect_to @sake, notice: 'Sake was successfully created.'

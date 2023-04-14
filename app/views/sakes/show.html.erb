@@ -40,7 +40,7 @@
   <%= @sake.rich %>
 </p>
 
-<div style="width: 400px; height:4000px;">
+<div style="width: 400px; height:400px;">
   <canvas id="myChart" ></canvas>
 </div>
 
@@ -69,6 +69,14 @@
     }
   });
 </script>
+
+<% unless @sake.user_id == current_user.id %>
+  <% if @favorite.present? %>
+    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'お気に入りする', favorites_path(sake_id: @sake.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
 
 
 <%= link_to 'Edit', edit_sake_path(@sake) %> |

@@ -1,3 +1,9 @@
+<% if current_user.try(:admin?) %>
+  <h1>管理者用ページ</h1>
+<% else %>
+  <h1>日本酒投稿一覧</h1>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Sakes</h1>
