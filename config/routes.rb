@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+  resources :users, only: [:index] 
   namespace :admin do
     resources :users
   end
-  
+
+  resources :relationships, only: [:create, :destroy]
+
   resources :labels
   resources :sakes
   root 'sakes#index'
+  get 'search', to: 'sakes#search'
 
   resources :favorites, only: [:create, :destroy]
 

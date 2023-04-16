@@ -3,7 +3,8 @@ class SakesController < ApplicationController
 
   # GET /sakes
   def index
-    @sakes = Sake.all
+    @q = Sake.ransack(params[:q])
+    @sake = @q.result(distinct: true)
   end
 
   # GET /sakes/1
@@ -46,6 +47,11 @@ class SakesController < ApplicationController
     redirect_to sakes_url, notice: 'Sake was successfully destroyed.'
   end
 
+  def search
+    @q = Sake.search(search_params)
+    @sake = @q.result(distinct: true)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sake
@@ -55,5 +61,9 @@ class SakesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def sake_params
       params.require(:sake).permit(:name, :content, :place, :sweetness, :flavor, :sour, :feeling, :rich, label_ids: [] )
+    end
+
+    def search_params
+      params.require(:q).permit!
     end
 end

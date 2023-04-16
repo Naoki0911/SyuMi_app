@@ -1,13 +1,13 @@
-<% if current_user.try(:admin?) %>
+<% if current_user&.admin? %>
   <h1>管理者用ページ</h1>
 <% else %>
   <h1>日本酒投稿一覧</h1>
 <% end %>
 
 <p id="notice"><%= notice %></p>
+<%= render 'search', q: @q, url: sakes_path %>
 
 <h1>Sakes</h1>
-
 <table>
   <thead>
     <tr>
@@ -25,7 +25,7 @@
   </thead>
 
   <tbody>
-    <% @sakes.each do |sake| %>
+    <% @sake.each do |sake| %>
       <tr>
         <td><%= sake.name %></td>
         <td><%= sake.content %></td>
