@@ -1,0 +1,5 @@
+<br>
+<% @user.followed.each do |user| %>
+  <%= user.name %>
+  <%= render 'follow_form', user: user %>
+<% end %>

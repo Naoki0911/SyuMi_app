@@ -1,5 +1,7 @@
 class SakesController < ApplicationController
   before_action :set_sake, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :user_confirmation, only: [:edit, :update, :destroy]
 
   # GET /sakes
   def index
@@ -60,10 +62,16 @@ class SakesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sake_params
-      params.require(:sake).permit(:name, :content, :place, :sweetness, :flavor, :sour, :feeling, :rich, label_ids: [] )
+      params.require(:sake).permit(:name, :image, :content, :place, :sweetness, :flavor, :sour, :feeling, :rich, label_ids: [] )
     end
 
     def search_params
       params.require(:q).permit!
+    end
+
+    def user_confirmation
+      if current_user.id != @sake.user.id
+        redirect_to sakes_path
+      end
     end
 end

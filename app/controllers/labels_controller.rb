@@ -3,7 +3,7 @@ class LabelsController < ApplicationController
 
   # GET /labels
   def index
-    @labels = Label.all
+    #@labels = Label.all
   end
 
   # GET /labels/1

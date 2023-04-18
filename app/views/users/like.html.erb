@@ -1,0 +1,57 @@
+<h1>Sakes</h1>
+<table>
+  <thead>
+    <tr>
+      <th>投稿者</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Content</th>
+      <th>Place</th>
+      <th>Sweetness</th>
+      <th>Flavor</th>
+      <th>Sour</th>
+      <th>Feeling</th>
+      <th>Rich</th>
+      <th>label</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.favorite_sakes.each do |f| %>
+      <tr>
+        <td><%= link_to f.user.name, user_path(f.user.id) %></td>
+        <td><%= f.name %></td>
+        <td>
+          <% if f.image.attached? %>
+            <%= image_tag f.image.variant(resize: "100x100") %>
+          <% end %>
+        </td>
+        <td><%= f.content %></td>
+        <td><%= f.place %></td>
+        <td><%= f.sweetness %></td>
+        <td><%= f.flavor %></td>
+        <td><%= f.sour %></td>
+        <td><%= f.feeling %></td>
+        <td><%= f.rich %></td>
+        <td>
+          <% f.labelings.each do |labeling| %>
+          <%= labeling.label.feature %><br>
+          <% end %>
+        </td>
+        <% if user_signed_in? %>
+          <% if current_user.id == f.user.id %>
+            <td><%= link_to 'Show', f %></td>
+            <td><%= link_to 'Edit', edit_sake_path(f) %></td>
+            <td><%= link_to 'Destroy', f, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td><%= link_to 'Show', f %></td>
+          <% end %>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to '投稿一覧', sakes_path %>
