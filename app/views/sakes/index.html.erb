@@ -11,7 +11,9 @@
 <table>
   <thead>
     <tr>
+      <th>投稿者</th>
       <th>Name</th>
+      <th>Image</th>
       <th>Content</th>
       <th>Place</th>
       <th>Sweetness</th>
@@ -27,7 +29,13 @@
   <tbody>
     <% @sake.each do |sake| %>
       <tr>
+        <td><%= link_to sake.user.name, user_path(sake.user.id) %></td>
         <td><%= sake.name %></td>
+        <td>
+          <% if sake.image.attached? %>
+            <%= image_tag sake.image.variant(resize: "100x100") %>
+          <% end %>
+        </td>
         <td><%= sake.content %></td>
         <td><%= sake.place %></td>
         <td><%= sake.sweetness %></td>
@@ -40,9 +48,17 @@
           <%= labeling.label.feature %><br>
           <% end %>
         </td>
-        <td><%= link_to 'Show', sake %></td>
-        <td><%= link_to 'Edit', edit_sake_path(sake) %></td>
-        <td><%= link_to 'Destroy', sake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? %>
+          <% if current_user.id == sake.user.id %>
+            <td><%= link_to 'Show', sake %></td>
+            <td><%= link_to 'Edit', edit_sake_path(sake) %></td>
+            <td><%= link_to 'Destroy', sake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% else %>
+            <td><%= link_to 'Show', sake %></td>
+          <% end %>
+        <% else %>
+          <td></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

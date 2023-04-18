@@ -6,6 +6,13 @@
 </p>
 
 <p>
+  <strong>Image:</strong>
+  <% if @sake.image.attached? %>
+    <%= image_tag @sake.image.variant(resize: "100x100") %>
+  <% end %>
+</p>
+
+<p>
   <strong>Content:</strong>
   <%= @sake.content %>
 </p>
