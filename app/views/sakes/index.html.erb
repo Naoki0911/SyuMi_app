@@ -5,65 +5,86 @@
 <% end %>
 
 <p id="notice"><%= notice %></p>
-<%= render 'search', q: @q, url: sakes_path %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <%= form_with url: sakes_path, method: :get, local: true, class: "form-inline" do |f| %>
+        <div class="input-group w-100">
+          <%= f.text_field :q, class: "form-control", placeholder: "検索キーワードを入力" %>
+          <div class="input-group-append">
+            <%= f.submit "検索", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+      <% @sake.each do |sake| %>
+        <div class="card mb-4">
+          <div class="card-header">
+            <div class="d-flex justify-content-between">
+              <div>
+                <strong><%= link_to sake.user.name, user_path(sake.user.id) %></strong>
+              </div>
+              <div>
+                日本酒名: <%= sake.name %>
+              </div>
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <% if sake.image.attached? %>
+                <%= image_tag sake.image, class: "card-img", alt: "#{sake.name}の画像" %>
+              <% else %>
+                <%= image_tag "no_image.png", class: "card-img", alt: "No Image" %>
+              <% end %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <p class="card-text">レビュー: <%= sake.content %></p>
+                <p class="card-text">生産地: <%= sake.place %></p>
+                <div class="row">
+                  <div class="col">
+                    <p class="card-text">甘さ: <%= sake.sweetness %></p>
+                  </div>
+                  <div class="col">
+                    <p class="card-text">香り: <%= sake.flavor %></p>
+                  </div>
+                  <div class="col">
+                    <p class="card-text">酸味: <%= sake.sour %></p>
+                  </div>
+                  <div class="col">
+                    <p class="card-text">飲みやすさ: <%= sake.feeling %></p>
+                  </div>
+                  <div class="col">
+                    <p class="card-text">コク: <%= sake.rich %></p>
+                  </div>
+                </div>
+                  <div class="col">
+                    <p class="card-text">
+                      タグ:
+                      <% sake.labelings.each do |labeling| %>
+                        <%= labeling.label.feature %><br>
+                      <% end %>
+                    </p>
+                  </div>
+                <div>
+                <% if user_signed_in? %>
+                  <% if current_user.id == sake.user.id %>
+                    <%= link_to '詳細を見る', sake %></td>
+                    <%= link_to '編集する', edit_sake_path(sake) %></td>
+                    <%= link_to '削除する', sake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <% else %>
+                    <td><%= link_to '詳細を見る', sake %></td>
+                  <% end %>
+                <% else %>
+                  <td></td>
+                <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<h1>Sakes</h1>
-<table>
-  <thead>
-    <tr>
-      <th>投稿者</th>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Content</th>
-      <th>Place</th>
-      <th>Sweetness</th>
-      <th>Flavor</th>
-      <th>Sour</th>
-      <th>Feeling</th>
-      <th>Rich</th>
-      <th>label</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @sake.each do |sake| %>
-      <tr>
-        <td><%= link_to sake.user.name, user_path(sake.user.id) %></td>
-        <td><%= sake.name %></td>
-        <td>
-          <% if sake.image.attached? %>
-            <%= image_tag sake.image.variant(resize: "100x100") %>
-          <% end %>
-        </td>
-        <td><%= sake.content %></td>
-        <td><%= sake.place %></td>
-        <td><%= sake.sweetness %></td>
-        <td><%= sake.flavor %></td>
-        <td><%= sake.sour %></td>
-        <td><%= sake.feeling %></td>
-        <td><%= sake.rich %></td>
-        <td>
-          <% sake.labelings.each do |labeling| %>
-          <%= labeling.label.feature %><br>
-          <% end %>
-        </td>
-        <% if user_signed_in? %>
-          <% if current_user.id == sake.user.id %>
-            <td><%= link_to 'Show', sake %></td>
-            <td><%= link_to 'Edit', edit_sake_path(sake) %></td>
-            <td><%= link_to 'Destroy', sake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% else %>
-            <td><%= link_to 'Show', sake %></td>
-          <% end %>
-        <% else %>
-          <td></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Sake', new_sake_path %>
+<%= link_to '新規投稿', new_sake_path %>

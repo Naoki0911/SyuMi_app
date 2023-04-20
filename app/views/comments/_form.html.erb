@@ -1,0 +1,9 @@
+<%= form_with(model: [@sake, Comment.new], local: true) do |form| %>
+  <div class="field">
+    <%= form.label :reply %><br>
+    <%= form.text_area :reply %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

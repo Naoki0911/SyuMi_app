@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <div class="jumbotron">
+    <h1 class="display-4">日本酒レビューアプリへようこそ！</h1>
+    <p class="lead">このアプリでは、日本酒のレビューを投稿・閲覧することができます。気になる日本酒の評価や感想をチェックしましょう！</p>
+    <hr class="my-4">
+    <div class="d-flex justify-content-center">
+      <div class="mr-2">
+        <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-primary' %>
+      </div>
+      <div class="mr-2">
+        <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-success' %>
+      </div>
+      <div>
+        <%= link_to 'ゲストログイン', guest_sign_in_path, method: :post, class: 'btn btn-warning' %>
+      </div>
+      <div>
+        <%= link_to '管理者用ゲストログイン', guest_admin_sign_in_path, method: :post, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+</div>

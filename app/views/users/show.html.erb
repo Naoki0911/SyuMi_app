@@ -1,64 +1,62 @@
-<h1>ユーザー情報</h1>
+<div class="container mt-5">
+  <h1 class="mb-4">ユーザー情報</h1>
 
-<table class="table table-hover">
-  <tbody>
-    <tr>
-      <th>ユーザー</th>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <th>ユーザーID</th>
-      <td><%= @user.id %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= @user.email %></td>
-    </tr>
-    <tr>
-      <th>オススメの一本</th>
-      <td><%= @user.recommend %></td>
-    </tr>
-    <tr>
-      <th>自己紹介</th>
-      <td><%= @user.introduction %></td>
-    </tr>
-
-    <tr>
-      <th><%= link_to "フォロー", follows_user_path %><th>
-      <td><%= @user.active_relationships.count%></td>
-    </tr>
-
-    <tr>
-      <th><%= link_to "フォロワー", followers_user_path %><th>
-      <td><%= @user.passive_relationships.count%></td>
-    </tr>
-  </tbody>
-</table>
-<div class="mb-3">
   <table class="table table-hover">
-    <thead class="tehad-default">
-      <tr>
-        <th>投稿者</th>
-        <th>日本酒</th>
-        <th>コメント</th>
-        <th>生産地</th>
-      </tr>
-    </thead>
     <tbody>
-      <% @user.sakes.each do |t| %>
-        <tr>
-          <td><%= t.user.name %></td>
-          <td><%= t.name %></td>
-          <td><%= t.content %></td>
-          <td><%= t.place %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <th>ユーザー</th>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <th>オススメの一本</th>
+        <td><%= @user.recommend %></td>
+      </tr>
+      <tr>
+        <th>自己紹介</th>
+        <td><%= @user.introduction %></td>
+      </tr>
+
+      <tr>
+        <th><%= link_to "フォロー", follows_user_path %><th>
+        <td><%= @user.active_relationships.count%></td>
+      </tr>
+
+      <tr>
+        <th><%= link_to "フォロワー", followers_user_path %><th>
+        <td><%= @user.passive_relationships.count%></td>
+      </tr>
     </tbody>
   </table>
+  <div class="mb-3">
+    <table class="table table-hover">
+      <thead class="thead-default">
+        <tr>
+          <th>投稿者</th>
+          <th>日本酒</th>
+          <th>コメント</th>
+          <th>生産地</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.sakes.each do |t| %>
+          <tr>
+            <td><%= t.user.name %></td>
+            <td><%= t.name %></td>
+            <td><%= t.content %></td>
+            <td><%= t.place %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex flex-wrap justify-content-between mb-3">
+    <%= link_to 'お気に入り一覧', like_user_path, class: 'btn btn-primary' %>
+    <% if current_user.id == @user.id %>
+      <%= link_to '編集', edit_user_path(@user), class: 'btn btn-warning' %>
+    <% end %>
+    <% if current_user == @user && current_user.admin? %>
+      <%= link_to "管理者ページ", admin_users_path, class: 'btn btn-danger' %>
+    <% end %>
+    <%= link_to '投稿一覧', sakes_path, class: 'btn btn-secondary' %>
+  </div>
 </div>
-<%= link_to 'お気に入り一覧', like_user_path %> 
-<%= link_to '編集', edit_user_path(@user) %> 
-<% if current_user == @user && current_user.admin? %>
-  <%= link_to "管理者ページ", admin_users_path %>
-<% end %>
-<%= link_to '投稿一覧', sakes_path %>

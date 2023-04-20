@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+ .main-content {
+  padding-top: 70px; // ヘッダーの高さに応じて調整
+  padding-bottom: 70px; // フッターの高さに応じて調整
+}
+
+
+
+@import "bootstrap/scss/bootstrap";
