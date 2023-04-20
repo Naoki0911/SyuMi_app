@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followed, through: :passive_relationships, source: :follower
   has_one_attached :image
+  has_many :comments
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -24,4 +25,18 @@ class User < ApplicationRecord
   def unfollow!(other_user)
     active_relationships.find_by(followed_id: other_user.id).destroy
   end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
+  def self.guest_admin
+    find_or_create_by!(email: 'admin_guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.admin = true
+    end
+  end
+
 end

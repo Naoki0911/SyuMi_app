@@ -14,3 +14,4 @@ ActiveStorage.start()
 //= require jquery
 
 //= require Chart.min
+import 'bootstrap/dist/js/bootstrap'

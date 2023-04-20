@@ -1,5 +1,17 @@
 <br>
-<% @user.following.each do |user| %>
-  <%= user.name %>
-  <%= render 'follow_form', user: user %>
-<% end %>
+<div class="container mt-5">
+  <div class="row">
+    <% @user.following.each do |user| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= user.name %></h5>
+            <div class="d-flex justify-content-between">
+              <%= render 'follow_form', user: user %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

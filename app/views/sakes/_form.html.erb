@@ -1,72 +1,77 @@
-<%= form_with(model: sake) do |form| %>
-  <% if sake.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(sake.errors.count, "error") %> prohibited this sake from being saved:</h2>
-
-      <ul>
-        <% sake.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: sake, class: "container mt-5") do |form| %>
+  <div class="card">
+    <div class="card-header">
+      Sake Information
     </div>
-  <% end %>
+    <div class="card-body">
+      <% if sake.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
+          <h5><%= pluralize(sake.errors.count, "error") %> prohibited this sake from being saved:</h5>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :place %>
-    <%= form.text_field :place %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sweetness %>
-    <%= form.number_field :sweetness %>
-  </div>
-
-  <div class="field">
-    <%= form.label :flavor %>
-    <%= form.number_field :flavor %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sour %>
-    <%= form.number_field :sour %>
-  </div>
-
-  <div class="field">
-    <%= form.label :feeling %>
-    <%= form.number_field :feeling %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rich %>
-    <%= form.number_field :rich %>
-  </div>
-
-  <div class="field">
-  <% Label.all.each do |label| %>
-      <% if action_name == 'new' || action_name == 'create' %>
-        <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
-        <label><%= label.feature %></label>
-      <% elsif action_name == 'edit' || action_name == 'update' %>
-        <%= form.check_box :label_ids, { multiple: true, checked: @sake.label_ids.include?(label.id), disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
-        <label><%= label.feature %></label>
+          <ul>
+            <% sake.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    <% end %>
-  </div>
+
+      <div class="mb-3">
+        <%= form.label :日本酒名, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :画像, class: "form-label" %>
+        <%= form.file_field :image, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :レビュー, class: "form-label" %>
+        <%= form.text_area :content, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :生産地, class: "form-label" %>
+        <%= form.text_field :place, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :甘さ, class: "form-label" %>
+        <%= form.number_field :sweetness, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :香り, class: "form-label" %>
+        <%= form.number_field :flavor, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :酸味, class: "form-label" %>
+        <%= form.number_field :sour, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :飲みやすさ, class: "form-label" %>
+        <%= form.number_field :feeling, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :コク, class: "form-label" %>
+        <%= form.number_field :rich, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <% Label.all.each do |label| %>
+          <% if action_name == 'new' || action_name == 'create' %>
+            <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
+            <label><%= label.feature %></label>
+          <% elsif action_name == 'edit' || action_name == 'update' %>
+            <%= form.check_box :label_ids, { multiple: true, checked: @sake.label_ids.include?(label.id), disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
+            <label><%= label.feature %></label>
+          <% end %>
+        <% end %>
+      </div>
 
   <div class="actions">
     <%= form.submit %>

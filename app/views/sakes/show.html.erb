@@ -1,54 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @sake.name %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <% if @sake.image.attached? %>
-    <%= image_tag @sake.image.variant(resize: "100x100") %>
-  <% end %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @sake.content %>
-</p>
-
-<p>
-  <strong>Place:</strong>
-  <%= @sake.place %>
-</p>
-
-<p>
-  <strong>Sweetness:</strong>
-  <%= @sake.sweetness %>
-</p>
-
-<p>
-  <strong>Flavor:</strong>
-  <%= @sake.flavor %>
-</p>
-
-<p>
-  <strong>Sour:</strong>
-  <%= @sake.sour %>
-</p>
-
-<p>
-  <strong>Feeling:</strong>
-  <%= @sake.feeling %>
-</p>
-
-<p>
-  <strong>Rich:</strong>
-  <%= @sake.rich %>
-</p>
-
-<div style="width: 400px; height:400px;">
-  <canvas id="myChart" ></canvas>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0"><strong>投稿者:</strong> <%= @sake.name %></h5>
+        </div>
+        <div class="card-body">
+          <% if @sake.image.attached? %>
+            <div class="text-center mb-4">
+              <%= image_tag @sake.image.variant(resize: "300x300"), class: "rounded" %>
+            </div>
+          <% end %>
+          <p><strong>レビュー:</strong> <%= @sake.content %></p>
+          <p><strong>生産地:</strong> <%= @sake.place %></p>
+          <div style="width: 400px; height:400px;" class="mx-auto">
+            <canvas id="myChart" ></canvas>
+          </div>
+          <p><strong>お気に入り:</strong> <%= @sake.favorites.count %></p>
+          <div class="d-flex justify-content-between mt-3">
+            <% unless @sake.user_id == current_user.id %>
+              <% if @favorite.present? %>
+                <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+              <% else %>
+                <%= link_to 'お気に入りする', favorites_path(sake_id: @sake.id), method: :post, class: 'btn btn-primary' %>
+              <% end %>
+            <% end %>
+            <%= link_to '編集する', edit_sake_path(@sake), class: 'btn btn-warning' %> 
+            <%= link_to '戻る', sakes_path, class: 'btn btn-secondary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -77,16 +62,29 @@
   });
 </script>
 
-<% unless @sake.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'お気に入りする', favorites_path(sake_id: @sake.id), method: :post, class: 'btn btn-primary' %>
-  <% end %>
-<% end %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3>コメント</h3>
+        </div>
+        <div class="card-body">
+          <%= render @sake.comments %>
+        </div>
+      </div>
 
+      <div class="card mt-4">
+        <div class="card-header">
+          <h3>コメントを追加</h3>
+        </div>
+        <div class="card-body">
+          <%= render 'comments/form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_sake_path(@sake) %> |
-<%= link_to 'Back', sakes_path %>
 
 
