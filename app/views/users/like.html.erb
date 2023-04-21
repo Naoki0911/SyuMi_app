@@ -1,22 +1,10 @@
-<% if current_user&.admin? %>
-  <h1>管理者用ページ</h1>
-<% else %>
-  <h1>日本酒投稿一覧</h1>
-<% end %>
+<h1><%= "#{@user.name}のお気に入り一覧" %></h1>
 
 <p id="notice"><%= notice %></p>
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-8 mx-auto">
-      <%= form_with url: sakes_path, method: :get, local: true, class: "form-inline" do |f| %>
-        <div class="input-group w-100">
-          <%= f.text_field :q, class: "form-control", placeholder: "検索キーワードを入力" %>
-          <div class="input-group-append">
-            <%= f.submit "検索", class: "btn btn-primary" %>
-          </div>
-        </div>
-      <% end %>
-      <% @sake.each do |sake| %>
+      <% @user.favorite_sakes.each do |sake| %>
         <div class="card mb-4">
           <div class="card-header">
             <div class="d-flex justify-content-between">
@@ -38,7 +26,7 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <p class="card-text">レビュー: <%= sake.content %></p>
+                <p class="card-text">レビュー内容: <%= sake.content %></p>
                 <p class="card-text">生産地: <%= sake.place %></p>
                 <div class="row">
                   <div class="col">
@@ -57,26 +45,26 @@
                     <p class="card-text">コク: <%= sake.rich %></p>
                   </div>
                 </div>
-                  <div class="col">
-                    <p class="card-text">
-                      タグ:
-                      <% sake.labelings.each do |labeling| %>
-                        <%= labeling.label.feature %><br>
-                      <% end %>
-                    </p>
-                  </div>
+                <div class="col">
+                  <p class="card-text">
+                    タグ:
+                    <% sake.labelings.each do |labeling| %>
+                      <%= labeling.label.feature %><br>
+                    <% end %>
+                  </p>
+                </div>
                 <div>
-                <% if user_signed_in? %>
-                  <% if current_user.id == sake.user.id %>
-                    <%= link_to '詳細を見る', sake %></td>
-                    <%= link_to '編集する', edit_sake_path(sake) %></td>
-                    <%= link_to '削除する', sake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <% if user_signed_in? %>
+                    <% if current_user.id == sake.user.id %>
+                      <%= link_to '詳細を見る', sake %></td>
+                      <%= link_to '編集する', edit_sake_path(sake) %></td>
+                      <%= link_to '削除する', sake, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <% else %>
+                      <td><%= link_to 'Show', sake %></td>
+                    <% end %>
                   <% else %>
-                    <td><%= link_to '詳細を見る', sake %></td>
+                    <td></td>
                   <% end %>
-                <% else %>
-                  <td></td>
-                <% end %>
                 </div>
               </div>
             </div>
@@ -86,5 +74,3 @@
     </div>
   </div>
 </div>
-
-<%= link_to '新規投稿', new_sake_path %>
