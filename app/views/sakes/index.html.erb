@@ -12,7 +12,7 @@
         <div class="input-group w-100">
           <%= f.text_field :q, class: "form-control", placeholder: "検索キーワードを入力" %>
           <div class="input-group-append">
-            <%= f.submit "検索", class: "btn btn-primary" %>
+            <%= f.submit "検索", class: "btn btn-success" %>
           </div>
         </div>
       <% end %>
@@ -40,6 +40,7 @@
               <div class="card-body">
                 <p class="card-text">レビュー: <%= sake.content %></p>
                 <p class="card-text">生産地: <%= sake.place %></p>
+                <p>
                 <div class="row">
                   <div class="col">
                     <p class="card-text">甘さ: <%= sake.sweetness %></p>
@@ -57,14 +58,15 @@
                     <p class="card-text">コク: <%= sake.rich %></p>
                   </div>
                 </div>
-                  <div class="col">
-                    <p class="card-text">
-                      タグ:
-                      <% sake.labelings.each do |labeling| %>
-                        <%= labeling.label.feature %><br>
-                      <% end %>
-                    </p>
-                  </div>
+                </p>
+                <p class="card-text">
+                  タグ:
+                  <% sake.labelings.each do |labeling| %>
+                  <span class="badge bg-secondary me-2">
+                  <%= labeling.label.feature %>
+                  </span>
+                  <% end %>
+                </p>
                 <div>
                 <% if user_signed_in? %>
                   <% if current_user.id == sake.user.id %>
@@ -87,4 +89,10 @@
   </div>
 </div>
 
-<%= link_to '新規投稿', new_sake_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center mt-5">
+      <%= link_to '新規投稿', new_sake_path, class: 'btn btn-success, text-white' %>
+    </div>
+  </div>
+</div>
