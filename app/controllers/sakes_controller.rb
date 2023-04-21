@@ -28,7 +28,7 @@ class SakesController < ApplicationController
     @sake = current_user.sakes.build(sake_params)
 
     if @sake.save
-      redirect_to @sake, notice: 'Sake was successfully created.'
+      redirect_to @sake, notice: '投稿しました'
     else
       render :new
     end
@@ -37,7 +37,7 @@ class SakesController < ApplicationController
   # PATCH/PUT /sakes/1
   def update
     if @sake.update(sake_params)
-      redirect_to @sake, notice: 'Sake was successfully updated.'
+      redirect_to @sake, notice: '投稿を更新しました'
     else
       render :edit
     end
@@ -46,7 +46,7 @@ class SakesController < ApplicationController
   # DELETE /sakes/1
   def destroy
     @sake.destroy
-    redirect_to sakes_url, notice: 'Sake was successfully destroyed.'
+    redirect_to sakes_url, notice: '投稿を削除しました'
   end
 
   def search
