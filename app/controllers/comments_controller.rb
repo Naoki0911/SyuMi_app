@@ -1,17 +1,37 @@
 class CommentsController < ApplicationController
+  before_action :find_sake
+
   def create
-    @sake = Sake.find(params[:sake_id])
-    @comment = @sake.comments.create(comment_params)
+    @comment = @sake.comments.build(comment_params)
     @comment.user = current_user
-    
+
     if @comment.save
-      redirect_to sake_path(@sake)
+      flash[:success] = 'コメントが投稿されました'
     else
-      render 'sakes/show'
+      flash[:error] = 'コメントの投稿に失敗しました'
     end
+
+    redirect_to sake_path(@sake)
+  end
+
+  def destroy
+    @comment = @sake.comments.find(params[:id])
+
+    if current_user == @comment.user
+      @comment.destroy
+      flash[:success] = 'コメントが削除されました'
+    else
+      flash[:error] = 'コメントの削除権限がありません'
+    end
+
+    redirect_to sake_path(@sake)
   end
 
   private
+
+  def find_sake
+    @sake = Sake.find(params[:sake_id])
+  end
 
   def comment_params
     params.require(:comment).permit(:reply)

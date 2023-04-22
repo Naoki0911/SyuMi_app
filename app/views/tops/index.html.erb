@@ -4,6 +4,7 @@
     <p class="lead">全国には多種多様な日本酒が存在します。<br>その中でお気に入りの一本を見つけることは簡単なことではありません。<br>実際に「日本酒に興味はあるけれど、どれを飲んだらいいいのか分からない」とういう声が多数挙がっています。<br>このアプリでは、日本酒のレビューを投稿・閲覧することができます。<br>気になる日本酒の評価や感想をチェックしてお気に入りの一本を見つけましょう！</p>
     <hr class="my-4">
     <div class="d-flex justify-content-center">
+      <% unless user_signed_in? %>
       <div class="mr-2 me-3">
         <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-success text-white' %>
       </div>
@@ -16,6 +17,9 @@
       <div class="mr-2 me-3">
         <%= link_to '管理者用ゲストログイン', guest_admin_sign_in_path, method: :post, class: 'btn btn-success text-white' %>
       </div>
+      <% else %>
+      <div></div>
+      <% end %>
     </div>
   </div>
 </div>

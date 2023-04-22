@@ -81,6 +81,15 @@
         <div class="card-body">
           <%= render 'comments/form' %>
         </div>
+        <% if @sake.comments.build.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @sake.comments.build.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
       </div>
     </div>
   </div>

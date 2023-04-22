@@ -24,12 +24,10 @@ Rails.application.routes.draw do
   resources :labels
 
   resources :sakes do
-    resources :comments, only: [:create]
+    resources :comments
   end
   
   get 'search', to: 'sakes#search'
-
-  resources :comments, only: [:create]
 
   resources :favorites, only: [:index, :create, :destroy]
 

@@ -1,9 +1,9 @@
-<%= form_with(model: [@sake, Comment.new], local: true) do |form| %>
+<%= form_for [@sake, @sake.comments.build], url: sake_comments_path(@sake) do |f| %>
   <div class="field">
-    <%= form.label :reply %><br>
-    <%= form.text_area :reply %>
+    <%= f.label :reply %><br>
+    <%= f.text_area :reply %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit "コメントする"%>
   </div>
 <% end %>
