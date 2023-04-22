@@ -5,7 +5,16 @@ class Sake < ApplicationRecord
   has_many :favorite_users, through: :favorites, source: :user
   has_many :comments, dependent: :destroy
   belongs_to :user
-has_one_attached :image
+  has_one_attached :image
+
+  validates :name, presence: true
+  validates :content, presence: true
+  validates :place, presence: true
+  validates :sweetness, presence: true
+  validates :flavor, presence: true
+  validates :sour, presence: true
+  validates :feeling, presence: true
+  validates :rich, presence: true
 
   def self.ransackable_attributes(auth_object = nil)
     %w[name place]
