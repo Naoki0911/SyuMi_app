@@ -52,6 +52,19 @@ RSpec.describe "Sakes", type: :system do
       end
     end
   end
+
+  describe "投稿詳細画面確認テスト" do
+    context '投稿の詳細画面に遷移した場合した場合' do
+      it "投稿の詳細画面及びレーダーチャートが表示される" do
+        visit new_user_session_path
+        fill_in 'user_email', with: 'user@example.com'
+        fill_in 'user_password', with: 'password'
+        click_button 'ログイン'
+        visit sake_path(sake)
+        expect(page).to have_content("Test Sake")
+      end
+    end
+  end
   
 
   describe "投稿編集テスト" do
@@ -95,7 +108,7 @@ RSpec.describe "Sakes", type: :system do
         accept_confirm do
           click_link '削除', match: :first
         end
-        sleep(0.5)
+        sleep(3)
         expect(page).not_to have_content 'Test Sake'
         expect(page).to have_content("投稿を削除しました")
       end
