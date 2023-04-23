@@ -10,11 +10,11 @@ class Sake < ApplicationRecord
   validates :name, presence: true
   validates :content, presence: true
   validates :place, presence: true
-  validates :sweetness, presence: true
-  validates :flavor, presence: true
-  validates :sour, presence: true
-  validates :feeling, presence: true
-  validates :rich, presence: true
+  validates :sweetness, presence: true, inclusion: { in: 0..5 }
+  validates :flavor, presence: true, inclusion: { in: 0..5 }
+  validates :sour, presence: true, inclusion: { in: 0..5 }
+  validates :feeling, presence: true, inclusion: { in: 0..5 }
+  validates :rich, presence: true, inclusion: { in: 0..5 }
 
   def self.ransackable_attributes(auth_object = nil)
     %w[name place]

@@ -7,7 +7,7 @@ RSpec.describe 'お気に入り管理機能', type: :system do
   let!(:second_sake) { FactoryBot.create(:second_sake, user: user) }
   describe 'お気に入り追加機能のテスト' do
     context 'お気に入りに追加した場合' do
-      it 'お気に入りに追加されること' do
+      it 'お気に入りされていること' do
         visit new_user_session_path
         fill_in 'user_email', with: 'admin@example.com'
         fill_in 'user_password', with: 'password2'
@@ -15,9 +15,7 @@ RSpec.describe 'お気に入り管理機能', type: :system do
         click_link '詳細を見る', match: :first
         sleep(2)
         click_link 'お気に入りする'
-        click_link 'マイページ'
-        click_link 'お気に入り一覧'
-        click_link '詳細を見る'
+        click_link '詳細を見る', match: :first
         expect(page).to have_content 'お気に入り解除する'
       end
     end
