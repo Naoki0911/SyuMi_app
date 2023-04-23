@@ -18,7 +18,6 @@ gem 'jquery-rails'
 gem 'chart-js-rails'
 gem 'devise'
 gem 'devise-i18n'
-gem 'rexml'
 gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
 
@@ -50,7 +49,6 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver', '>= 4.0.0.rc1'
   gem 'webdrivers'
 end
 
