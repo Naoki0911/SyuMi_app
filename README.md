@@ -12,7 +12,7 @@
 * ransack
 * Chart.js
 # 実行手順
-* $ git clone
+* $ git clone git@github.com:Naoki0911/SyuMi_app.git
 * $ cd SyuMi
 * $ bundle install
 * $ yarn install
