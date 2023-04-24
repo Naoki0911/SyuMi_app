@@ -1,4 +1,4 @@
-<%= form_for [@sake, @sake.comments.build], url: sake_comments_path(@sake) do |f| %>
+<%= form_for [sake, comment], url: sake_comments_path(sake) do |f| %>
   <div class="field">
     <%= f.label :reply %><br>
     <%= f.text_area :reply %>

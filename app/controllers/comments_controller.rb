@@ -2,16 +2,16 @@ class CommentsController < ApplicationController
   before_action :find_sake
 
   def create
+    @sake = Sake.find(params[:sake_id])
     @comment = @sake.comments.build(comment_params)
-    @comment.user = current_user
-
+    @comment.user_id = current_user.id
+  
     if @comment.save
-      flash[:success] = 'コメントが投稿されました'
+      redirect_to sake_path(@sake)
     else
-      flash[:error] = 'コメントの投稿に失敗しました'
+      flash[:alert] = @comment.errors.full_messages.to_sentence
+      redirect_to sake_path(@sake) # この行を追加してください。
     end
-
-    redirect_to sake_path(@sake)
   end
 
   def destroy

@@ -18,15 +18,26 @@
               <h2 class="mb-0"><%= t('.sign_in') %></h2>
             </div>
             <div class="card-body">
+            <% if flash[:alert] %>
+              <div class="alert alert-danger" role="alert">
+                <%= flash[:alert] %>
+              </div>
+            <% end %>
               <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
                 <div class="form-group">
                   <%= f.label :email, class: "control-label" %>
                   <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+                  <% if resource.errors.include?(:email) %>
+                    <small class="text-danger"><%= resource.errors.full_messages_for(:email).join(', ') %></small>
+                  <% end %>
                 </div>
 
                 <div class="form-group">
                   <%= f.label :password, class: "control-label" %>
                   <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+                  <% if resource.errors.include?(:password) %>
+                    <small class="text-danger"><%= resource.errors.full_messages_for(:password).join(', ') %></small>
+                  <% end %>
                 </div>
 
                 <% if devise_mapping.rememberable? %>

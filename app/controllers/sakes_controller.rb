@@ -12,6 +12,7 @@ class SakesController < ApplicationController
   # GET /sakes/1
   def show
     @favorite = current_user.favorites.find_by(sake_id: @sake.id)
+    @comment = Comment.new
   end
 
   # GET /sakes/new

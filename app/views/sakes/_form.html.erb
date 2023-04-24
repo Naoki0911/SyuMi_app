@@ -6,7 +6,7 @@
     <div class="card-body">
       <% if sake.errors.any? %>
         <div id="error_explanation" class="alert alert-danger">
-          <h5><%= pluralize(sake.errors.count, "error") %> prohibited this sake from being saved:</h5>
+          <h5><%= sake.errors.count %>件のエラーにより、この投稿の保存ができませんでした:</h5>
 
           <ul>
             <% sake.errors.each do |error| %>
