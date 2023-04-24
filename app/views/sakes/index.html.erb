@@ -1,12 +1,10 @@
-
-<h1>日本酒投稿一覧</h1>
-
 <p id="notice"><%= notice %></p>
 <div class="container mt-5">
+<h1>日本酒投稿一覧</h1>
   <div class="row">
     <div class="col-md-8 mx-auto">
       <%= search_form_for @q, url: sakes_path, method: :get, class: "form-inline" do |f| %>
-        <div class="input-group w-100">
+        <div class="input-group w-100 mb-4">
           <%= f.search_field :name_or_place_cont, class: 'form-control', placeholder: '日本酒名か生産地（都道府県まで）' %>
           <div class="input-group-append">
             <%= f.submit '検索', class: "btn btn-success" %>
@@ -64,6 +62,7 @@
                   </span>
                   <% end %>
                 </p>
+                <p class="card-text">お気に入り件数: <%= sake.favorites.count %></p>
                 <div>
                 <% if user_signed_in? %>
                   <% if current_user.id == sake.user.id %>

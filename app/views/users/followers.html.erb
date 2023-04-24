@@ -1,18 +1,14 @@
-<br>
-<% if false %>
-<% @user.followed.each do |user| %>
-  <%= user.name %>
-  <%= render 'follow_form', user: user %>
-<% end %>
-<% end %>
-
 <div class="container mt-5">
+<h1 class="mb-4">フォロワー一覧</h1>
   <div class="row">
     <% @user.followed.each do |user| %>
       <div class="col-md-4">
         <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="card-title"><%= link_to user.name, user_path(user) %></h5>
+          </div>
           <div class="card-body">
-            <h5 class="card-title"><%= user.name %></h5>
+            <p class="card-title"><%= user.introduction %><p>
             <div class="d-flex justify-content-between">
               <%= render 'follow_form', user: user %>
             </div>

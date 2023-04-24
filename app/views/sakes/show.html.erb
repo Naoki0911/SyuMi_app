@@ -15,6 +15,14 @@
           <% end %>
           <p><strong>レビュー:</strong> <%= @sake.content %></p>
           <p><strong>生産地:</strong> <%= @sake.place %></p>
+          <p>
+            タグ:
+            <% @sake.labelings.each do |labeling| %>
+            <span class="badge bg-secondary me-2">
+            <%= labeling.label.feature %>
+            </span>
+            <% end %>
+          </p>
           <div style="width: 400px; height:400px;" class="mx-auto">
             <canvas id="myChart" ></canvas>
           </div>
@@ -22,13 +30,17 @@
           <div class="d-flex justify-content-between mt-3">
             <% unless @sake.user_id == current_user.id %>
               <% if @favorite.present? %>
-                <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+                <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger text-white' %>
               <% else %>
-                <%= link_to 'お気に入りする', favorites_path(sake_id: @sake.id), method: :post, class: 'btn btn-primary' %>
+                <%= link_to 'お気に入りする', favorites_path(sake_id: @sake.id), method: :post, class: 'btn btn-success text-white' %>
               <% end %>
             <% end %>
-            <%= link_to '編集する', edit_sake_path(@sake), class: 'btn btn-warning' %> 
-            <%= link_to '戻る', sakes_path, class: 'btn btn-secondary' %>
+            <% if current_user.id == @sake.user.id %>
+              <%= link_to '編集する', edit_sake_path(@sake), class: 'btn btn-success text-white' %> 
+              <%= link_to '戻る', sakes_path, class: 'btn btn-success text-white' %>
+            <% else %>
+              <%= link_to '戻る', sakes_path, class: 'btn btn-success text-white' %>
+            <% end %>
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
-<h1><%= "#{@user.name}のお気に入り一覧" %></h1>
-
 <p id="notice"><%= notice %></p>
 <div class="container mt-5">
+<h1><%= "#{@user.name}のお気に入り一覧" %></h1>
   <div class="row">
     <div class="col-md-8 mx-auto">
       <% @user.favorite_sakes.each do |sake| %>
@@ -73,4 +72,7 @@
       <% end %>
     </div>
   </div>
+    <div class="d-flex flex-wrap justify-content-center mb-3">
+      <%= link_to '投稿一覧', sakes_path, class: 'btn btn-success text-white' %>
+    </div>
 </div>

@@ -1,18 +1,33 @@
 <div class="container mt-5">
   <h1 class="mb-4">ユーザー一覧</h1>
   <h2 class="mb-3">ユーザー</h2>
-  <% new_users = @users.reject { |user| user.id == current_user.id } %>
-  <div class="list-group">
-    <% new_users.each do |user| %>
-      <div class="list-group-item d-flex justify-content-between align-items-center">
-        <div>
-          <strong><%= user.name %></strong>
-          <%#= user.email %>
-        </div>
-        <div>
-          <%= render 'follow_form', user: user %>
-        </div>
+  <div class="row">
+    <% new_users = @users.reject { |user| user.id == current_user.id } %>
+    <% new_users.each_slice(3) do |user_slice| %>
+      <div class="row">
+        <% user_slice.each do |user| %>
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <div class="card-header">
+                <strong><%= link_to user.name, user_path(user) %></strong>
+                <%#= user.email %>
+              </div>
+              <div class="card-body">
+                <p class="card-title"><%= user.introduction %><p>
+                <div>
+                  <%= render 'follow_form', user: user %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>
 </div>
+
+
+
+
+
+

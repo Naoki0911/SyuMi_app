@@ -15,14 +15,15 @@
  */
 
  .main-content {
-  padding-top: 70px; // ヘッダーの高さに応じて調整
+  padding-top: 50px; // ヘッダーの高さに応じて調整
   padding-bottom: 70px; // フッターの高さに応じて調整
 }
 
 main {
   background-color: rgb(204, 255, 204);
+  height: 100%;
+  min-height: 100vh;
 }
-
 
 
 
